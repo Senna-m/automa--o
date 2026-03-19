@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema Laboratorial</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">
+        <span class="logo-icon">🧪</span>
+        <div>
+          <h2>Sistema Laboratorial</h2>
+          <p>Triagem e Agendamento</p>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <button class="tab-btn active" data-tab="triagem">🔎 Consulta de Exames</button>
+        <button class="tab-btn" data-tab="agendamento">📅 Novo Agendamento</button>
+        <button class="tab-btn" data-tab="listagem">📋 Agendamentos</button>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <header class="topbar">
+        <div>
+          <h1>🧪 Sistema de Triagem e Agendamento de Exames</h1>
+          <p>Consulta de exames laboratoriais e gerenciamento de agendamentos.</p>
+        </div>
+      </header>
+
+      <section id="triagem" class="tab-content active">
+        <div class="card">
+          <h2>Consulta de informações do exame</h2>
+          <p class="section-text">
+            Digite o nome do exame para buscar preparo, amostra, prazo e orientações.
+          </p>
+
+          <div class="search-box">
+            <input
+              type="text"
+              id="buscaExame"
+              placeholder="Ex.: Hemograma, Glicemia, TSH..."
+            />
+            <button id="btnBuscar">Buscar</button>
+          </div>
+
+          <div id="resultadoExames" class="results"></div>
+        </div>
+      </section>
+
+      <section id="agendamento" class="tab-content">
+        <div class="card">
+          <h2>Novo agendamento</h2>
+          <p class="section-text">
+            Preencha os dados abaixo para cadastrar um novo agendamento.
+          </p>
+
+          <form id="formAgendamento" class="form-grid">
+            <div class="form-group">
+              <label for="nomePaciente">Nome</label>
+              <input type="text" id="nomePaciente" name="nomePaciente" />
+            </div>
+
+            <div class="form-group">
+              <label for="telefone">Telefone</label>
+              <input type="text" id="telefone" name="telefone" />
+            </div>
+
+            <div class="form-group">
+              <label for="exame">Exame</label>
+              <select id="exame" name="exame">
+                <option value="">Carregando exames...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="dataAgendamento">Data do agendamento</label>
+              <input type="date" id="dataAgendamento" name="dataAgendamento" />
+            </div>
+
+            <div class="form-group">
+              <label for="horario">Horário</label>
+              <input type="time" id="horario" name="horario" />
+            </div>
+
+            <div class="form-group full-width">
+              <label for="observacoes">Observações</label>
+              <textarea
+                id="observacoes"
+                name="observacoes"
+                rows="4"
+                placeholder="Informações adicionais..."
+              ></textarea>
+            </div>
+
+            <div class="full-width">
+              <button type="submit" class="primary-btn">Salvar agendamento</button>
+            </div>
+          </form>
+
+          <div id="mensagemFormulario" class="message-box"></div>
+        </div>
+      </section>
+
+      <section id="listagem" class="tab-content">
+        <div class="card">
+          <h2>Agendamentos cadastrados</h2>
+          <p class="section-text">
+            Visualize todos os agendamentos registrados no sistema.
+          </p>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Paciente</th>
+                  <th>Telefone</th>
+                  <th>Exame</th>
+                  <th>Data</th>
+                  <th>Horário</th>
+                  <th>Observações</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaAgendamentos">
+                <tr>
+                  <td colspan="7" class="empty-state">Carregando agendamentos...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
