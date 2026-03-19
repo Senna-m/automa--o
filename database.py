@@ -1,13 +1,12 @@
 import mysql.connector
 
 DB_CONFIG = {
-    "host": "127.0.0.1",
-    "user": "nathalie_app",
-    "password": "123456",
-    "database": "agendamento_exame",
-    "port": 3306
+    "host": os.getenv("DB_HOST"),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME"),
+    "port": int(os.getenv("DB_PORT", 3306))
 }
-
 
 def conectar():
     return mysql.connector.connect(**DB_CONFIG)
